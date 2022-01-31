@@ -2,12 +2,14 @@ import * as React from 'react';
 import {Button, Text, TextInput, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import {NativeBaseProvider} from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from './components/AuthContext';
 import Intro from './screens/Intro';
 import Home from './screens/Home';
-
+import QrCode from './screens/QrCode';
+import BarCode from './screens/BarCode';
 function SplashScreen() {
   return (
     <View>
@@ -17,7 +19,33 @@ function SplashScreen() {
 }
 
 const Stack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
+
+function MyTabs() {
+  return (
+    <Tab.Navigator  screenOptions={{
+      tabBarIndicatorStyle:{backgroundColor:'orange'},
+      tabBarLabelStyle: { fontSize: 12 },
+      tabBarContentContainerStyle:{
+        justifyContent:'center'
+      }
+    }}>
+      <Tab.Screen name="Home" component={QrCode} options={{
+        title:"Qrcode",
+        tabBarLabelStyle:{
+          fontFamily:'Nunito-Regular'
+        }
+      }} />
+      <Tab.Screen name="Settings" component={BarCode} options={{
+        title:"Barcode",
+        tabBarLabelStyle:{
+          fontFamily:'Nunito-Medium'
+        }
+      }}/>
+    </Tab.Navigator>
+  );
+}
 export default function App({navigation}) {
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
@@ -114,7 +142,12 @@ export default function App({navigation}) {
               />
             ) : (
               // User is signed in
-              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Home" component={MyTabs} options={{
+                title:"OLUŞTUR",
+                headerTitleStyle:{
+                  fontFamily:"Nunito-ExtraBold"
+                }
+              }} />
             )}
           </Stack.Navigator>
         </NavigationContainer>
