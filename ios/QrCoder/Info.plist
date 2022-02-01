@@ -22,6 +22,12 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Qrcode taraması yapılabilmesi için kamera iznine ihtiyacımız var.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Qrcode taraması yapılabilmesi için fotoğraflar ihtiyacımız var.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Qrcode taraması yapılabilmesi için mikrofon iznine ihtiyacımız var.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

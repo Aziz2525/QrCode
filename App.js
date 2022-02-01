@@ -1,8 +1,19 @@
 import * as React from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
+import {
+  Button,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {
+  createStackNavigator,
+  TransitionPresets,
+  TransitionSpecs,
+} from '@react-navigation/stack';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {NativeBaseProvider} from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from './components/AuthContext';
@@ -10,6 +21,9 @@ import Intro from './screens/Intro';
 import Home from './screens/Home';
 import QrCode from './screens/QrCode';
 import BarCode from './screens/BarCode';
+import QrScanner from './screens/QrScanner';
+import Profile from './screens/Profile';
+import QrGenerator from './screens/QrGenerator';
 function SplashScreen() {
   return (
     <View>
@@ -21,28 +35,36 @@ function SplashScreen() {
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-
 function MyTabs() {
   return (
-    <Tab.Navigator  screenOptions={{
-      tabBarIndicatorStyle:{backgroundColor:'orange'},
-      tabBarLabelStyle: { fontSize: 12 },
-      tabBarContentContainerStyle:{
-        justifyContent:'center'
-      }
-    }}>
-      <Tab.Screen name="Home" component={QrCode} options={{
-        title:"Qrcode",
-        tabBarLabelStyle:{
-          fontFamily:'Nunito-Regular'
-        }
-      }} />
-      <Tab.Screen name="Settings" component={BarCode} options={{
-        title:"Barcode",
-        tabBarLabelStyle:{
-          fontFamily:'Nunito-Medium'
-        }
-      }}/>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarIndicatorStyle: {backgroundColor: 'orange'},
+        tabBarLabelStyle: {fontSize: 12},
+        tabBarContentContainerStyle: {
+          justifyContent: 'center',
+        },
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={QrCode}
+        options={{
+          title: 'Qrcode',
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Regular',
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Barcode"
+        component={BarCode}
+        options={{
+          title: 'Barcode',
+          tabBarLabelStyle: {
+            fontFamily: 'Nunito-Medium',
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -142,12 +164,95 @@ export default function App({navigation}) {
               />
             ) : (
               // User is signed in
-              <Stack.Screen name="Home" component={MyTabs} options={{
-                title:"OLUŞTUR",
-                headerTitleStyle:{
-                  fontFamily:"Nunito-ExtraBold"
-                }
-              }} />
+              <>
+                <Stack.Screen
+                  name="Home"
+                  component={MyTabs}
+                  options={({route, navigation}) => ({
+                    title: 'OLUŞTUR',
+                    headerTitleStyle: {
+                      fontFamily: 'Nunito-ExtraBold',
+                    },
+                    headerRight: () => {
+                      return (
+                        <TouchableOpacity
+                          style={{marginRight: 20}}
+                          onPress={() => navigation.push('QrScanner')}>
+                          <Image
+                            source={require('./assets/images/barcode-scan.png')}
+                            style={{
+                              width: 25,
+                              height: 25,
+                              tintColor: '#424141',
+                            }}
+                          />
+                        </TouchableOpacity>
+                      );
+                    },
+                    headerLeft: () => {
+                      return (
+                        <TouchableOpacity
+                          style={{marginLeft: 20}}
+                          onPress={() => navigation.push('Profile')}>
+                          <Image
+                            source={require('./assets/images/user.png')}
+                            style={{
+                              width: 20,
+                              height: 20,
+                              tintColor: '#424141',
+                            }}
+                          />
+                        </TouchableOpacity>
+                      );
+                    },
+                  })}
+                />
+                <Stack.Screen
+                  name="QrScanner"
+                  component={QrScanner}
+                  options={{
+                    title: 'OLUŞTUR',
+                    headerTitleStyle: {
+                      fontFamily: 'Nunito-ExtraBold',
+                      color: '#424141',
+                    },
+                    headerBackTitle: 'Geri',
+                    headerBackTitleStyle: {color: 'orange'},
+                    headerTintColor: 'orange',
+                    headerTitle: 'Qrcode Tara',
+                    ...TransitionPresets.ModalPresentationIOS,
+                  }}
+                />
+                <Stack.Screen
+                  name="Profile"
+                  component={Profile}
+                  options={{
+                    title: 'OLUŞTUR',
+                    headerTitleStyle: {
+                      fontFamily: 'Nunito-ExtraBold',
+                      color: '#424141',
+                    },
+                    headerBackTitle: 'Geri',
+                    headerBackTitleStyle: {color: 'orange'},
+                    headerTintColor: 'orange',
+                    headerTitle: 'Profilim',
+                  }}
+                />
+                <Stack.Screen
+                  name="QrGenerator"
+                  component={QrGenerator}
+                  options={({route, navigation}) => ({
+                    title: route.params.name + ' Oluştur',
+                    headerTitleStyle: {
+                      fontFamily: 'Nunito-ExtraBold',
+                      color: '#424141',
+                    },
+                    headerBackTitle: 'Geri',
+                    headerBackTitleStyle: {color: 'orange'},
+                    headerTintColor: 'orange',
+                  })}
+                />
+              </>
             )}
           </Stack.Navigator>
         </NavigationContainer>
