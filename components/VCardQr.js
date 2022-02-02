@@ -121,6 +121,7 @@ const VCardQr = () => {
         />
       </FormControl>
       <Stack
+        style={{alignItems: 'flex-end'}}
         direction={{
           base: 'column',
           md: 'row',
@@ -135,7 +136,7 @@ const VCardQr = () => {
             fontSize: 20,
             marginBottom: 30,
           }}>
-          VCard QR Kodu Oluştur
+          QR Oluştur
         </Button>
       </Stack>
     </>

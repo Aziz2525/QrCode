@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
+    paddingBottom:10
   },
   searchInput: {
     width: '85%',

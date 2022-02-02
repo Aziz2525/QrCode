@@ -1,13 +1,17 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
 const Profile = () => {
+  const adsRemove = () => {
+    alert('İlanınız silindi.');
+  };
   return (
     <ScrollView
       contentContainerStyle={styles.contentContainerStyle}
       style={styles.container}>
       <Text style={styles.generateText}>Oluşturulanlar</Text>
       <Text style={styles.historyText}>Geçmiş Taramalar</Text>
+      <TouchableOpacity style={styles.removeAds} onPress={()=>adsRemove()}><Text style={styles.removeAdsText}>Reklamları Kaldır</Text></TouchableOpacity>
     </ScrollView>
   );
 };
@@ -32,4 +36,15 @@ const styles = StyleSheet.create({
     color: '#414141',
     fontFamily: 'Nunito-Bold',
   },
+  removeAds:{
+    backgroundColor: '#F72222',
+    padding:10,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:5
+  },
+  removeAdsText:{
+    fontFamily:'Nunito-Bold',
+    color:'white'
+  }
 });

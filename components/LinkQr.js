@@ -1,32 +1,16 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {
-  Button,
-  FormControl,
-  Icon,
-  Input,
-  Stack,
-  WarningOutlineIcon,
-} from 'native-base';
+import {Button, FormControl, Input, Stack} from 'native-base';
 
-const MessageQr = () => {
+const LinkQr = () => {
   return (
-    <>
+    <View>
       <FormControl w="100%" style={styles.form}>
-        <FormControl.Label>Telefon Numarası</FormControl.Label>
+        <FormControl.Label>İnternet Adresi</FormControl.Label>
         <Input
-          placeholder="Telefon numaranızı giriniz"
-          onChangeText={e => console.log(e)}
+          placeholder="İnternet Adresini giriniz"
           variant="underlined"
-          _focus={{borderColor: '#FFA500'}}
-        />
-      </FormControl>
-      <FormControl w="100%" style={styles.form}>
-        <FormControl.Label>Mesaj</FormControl.Label>
-        <Input
-          placeholder="Mesajınızı giriniz"
           onChangeText={e => console.log(e)}
-          variant="underlined"
           _focus={{borderColor: '#FFA500'}}
         />
       </FormControl>
@@ -49,11 +33,11 @@ const MessageQr = () => {
           QR Oluştur
         </Button>
       </Stack>
-    </>
+    </View>
   );
 };
 
-export default MessageQr;
+export default LinkQr;
 
 const styles = StyleSheet.create({
   form: {

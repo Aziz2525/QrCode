@@ -28,6 +28,10 @@
 	<string>Qrcode taraması yapılabilmesi için fotoğraflar ihtiyacımız var.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Qrcode taraması yapılabilmesi için mikrofon iznine ihtiyacımız var.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Bu uygulama, görüntüleri cihazınıza kaydetmek istiyor.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Bu uygulama, görüntüleri cihazınıza kaydetmek istiyor.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

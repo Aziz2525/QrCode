@@ -48,14 +48,6 @@ const qrcodeItems = [
     navigator: 'Link',
   },
   {
-    id: 7,
-    image: require('./assets/images/contact.png'),
-    width: 35,
-    height: 35,
-    text: 'İletişim',
-    navigator: 'Contact',
-  },
-  {
     id: 8,
     image: require('./assets/images/wifi.png'),
     width: 35,
@@ -71,14 +63,14 @@ const qrcodeItems = [
     text: 'Bitcoin',
     navigator: 'Bitcoin',
   },
-  {
-    id: 10,
-    image: require('./assets/images/social-media.png'),
-    width: 35,
-    height: 35,
-    text: 'Sosyal Medya',
-    navigator: 'SocialMedia',
-  },
+  // {
+  //   id: 10,
+  //   image: require('./assets/images/social-media.png'),
+  //   width: 35,
+  //   height: 35,
+  //   text: 'Sosyal Medya',
+  //   navigator: 'SocialMedia',
+  // },
   {
     id: 11,
     image: require('./assets/images/pdf-file.png'),

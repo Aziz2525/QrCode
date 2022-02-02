@@ -1,32 +1,35 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {
-  Button,
-  FormControl,
-  Icon,
-  Input,
-  Stack,
-  WarningOutlineIcon,
-} from 'native-base';
+import {Button, FormControl, Input, Radio, Stack} from 'native-base';
 
-const MessageQr = () => {
+const BitcoinQr = () => {
+  const [value, setValue] = React.useState('one');
   return (
-    <>
+    <View>
       <FormControl w="100%" style={styles.form}>
-        <FormControl.Label>Telefon Numarası</FormControl.Label>
+        <FormControl.Label>Miktar</FormControl.Label>
         <Input
-          placeholder="Telefon numaranızı giriniz"
-          onChangeText={e => console.log(e)}
+          placeholder="Miktar giriniz"
           variant="underlined"
+          onChangeText={e => console.log(e)}
           _focus={{borderColor: '#FFA500'}}
         />
       </FormControl>
       <FormControl w="100%" style={styles.form}>
-        <FormControl.Label>Mesaj</FormControl.Label>
+        <FormControl.Label>Alıcı</FormControl.Label>
         <Input
-          placeholder="Mesajınızı giriniz"
-          onChangeText={e => console.log(e)}
+          placeholder="Alıcı Giriniz"
           variant="underlined"
+          onChangeText={e => console.log(e)}
+          _focus={{borderColor: '#FFA500'}}
+        />
+      </FormControl>
+      <FormControl w="100%" style={styles.form}>
+        <FormControl.Label>Mesaj (zorunlu değil)</FormControl.Label>
+        <Input
+          placeholder="Mesaj Giriniz"
+          variant="underlined"
+          onChangeText={e => console.log(e)}
           _focus={{borderColor: '#FFA500'}}
         />
       </FormControl>
@@ -49,11 +52,11 @@ const MessageQr = () => {
           QR Oluştur
         </Button>
       </Stack>
-    </>
+    </View>
   );
 };
 
-export default MessageQr;
+export default BitcoinQr;
 
 const styles = StyleSheet.create({
   form: {

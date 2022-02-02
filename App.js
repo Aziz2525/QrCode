@@ -6,6 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Modal,
+  Pressable,
+  StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -24,6 +28,7 @@ import BarCode from './screens/BarCode';
 import QrScanner from './screens/QrScanner';
 import Profile from './screens/Profile';
 import QrGenerator from './screens/QrGenerator';
+import {ColorPicker} from 'react-native-color-picker';
 function SplashScreen() {
   return (
     <View>
@@ -69,6 +74,7 @@ function MyTabs() {
   );
 }
 export default function App({navigation}) {
+
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -247,6 +253,7 @@ export default function App({navigation}) {
                       fontFamily: 'Nunito-ExtraBold',
                       color: '#424141',
                     },
+                  
                     headerBackTitle: 'Geri',
                     headerBackTitleStyle: {color: 'orange'},
                     headerTintColor: 'orange',
@@ -256,6 +263,7 @@ export default function App({navigation}) {
             )}
           </Stack.Navigator>
         </NavigationContainer>
+       
       </NativeBaseProvider>
     </AuthContext.Provider>
   );
