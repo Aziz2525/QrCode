@@ -15,11 +15,14 @@ import {
   AdMobRewarded,
 } from 'react-native-admob';
 import qrcodeItems from '../qrcodeItems';
+import { useColorScheme } from 'react-native-appearance';
 
 const QrCode = ({navigation}) => {
   const [items, setItems] = useState(qrcodeItems);
   const [searchItems, setSeacrhItems] = useState(qrcodeItems);
   const [isSearch, setIsSearch] = useState(false);
+  const scheme = useColorScheme();
+
   const search = e => {
     if (e.length > 0) {
       setIsSearch(true);
@@ -33,19 +36,20 @@ const QrCode = ({navigation}) => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/8691691433');
-      AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-      AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
-    }, 5000);
+    // setTimeout(() => {
+    //   AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/8691691433');
+    //   AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    //   AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+    // }, 5000);
   }, []);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:scheme === 'dark' ? 'rgb(18, 18, 18)':"white"}]}>
       <View style={styles.searchView}>
         <View style={styles.searchBar}>
           <TextInput
             style={styles.searchInput}
             placeholder="Ara..."
+            placeholderTextColor={"#424141"}
             onChangeText={e => search(e)}
           />
           <Image
@@ -55,13 +59,14 @@ const QrCode = ({navigation}) => {
         </View>
       </View>
       <ScrollView
-        contentContainerStyle={{padding: 20, backgroundColor: 'white'}}>
+        contentContainerStyle={{padding: 20, backgroundColor: scheme === 'dark' ? 'rgb(18, 18, 18)' : "white"}}>
         <View style={styles.barcodeItems}>
           {!isSearch
             ? items.map((data, index) => {
                 return (
                   <TouchableOpacity
-                    style={styles.cardView}
+                  activeOpacity={.9}
+                    style={[styles.cardView,{backgroundColor: scheme === 'dark' ? 'rgb(18, 18, 18)' : "white",borderWidth:scheme === "dark" ?1 :0,borderColor:scheme === "dark" ?"white":"white"}]}
                     key={index}
                     onPress={() =>
                       navigation.push('QrGenerator', {
@@ -73,14 +78,15 @@ const QrCode = ({navigation}) => {
                       source={data.image}
                       style={{width: data.width, height: data.height}}
                     />
-                    <Text style={styles.cardText}>{data.text}</Text>
+                    <Text style={[styles.cardText,{color: scheme === 'dark' ? 'white' : "#424141"}]}>{data.text}</Text>
                   </TouchableOpacity>
                 );
               })
             : searchItems.map((data, index) => {
                 return (
                   <TouchableOpacity
-                    style={styles.cardView}
+                  activeOpacity={.9}
+                    style={[styles.cardView,{backgroundColor: scheme === 'dark' ? 'rgb(18, 18, 18)' : "white",borderWidth:scheme === "dark" ?1 :0,borderColor:scheme === "dark" ?"white":"white"}]}
                     key={index}
                     onPress={() =>
                       navigation.push('QrGenerator', {
@@ -92,7 +98,7 @@ const QrCode = ({navigation}) => {
                       source={data.image}
                       style={{width: data.width, height: data.height}}
                     />
-                    <Text style={styles.cardText}>{data.text}</Text>
+                    <Text style={[styles.cardText,{color: scheme === 'dark' ? 'white' : "#424141"}]}>{data.text}</Text>
                   </TouchableOpacity>
                 );
               })}
@@ -113,7 +119,6 @@ export default QrCode;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     flex: 1,
   },
   searchBar: {
@@ -152,7 +157,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

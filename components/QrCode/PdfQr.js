@@ -60,7 +60,7 @@ const PDFQr = () => {
       fileCache: true,
       appendExt: 'png',
     })
-      .fetch('GET', `data:image/png;base64,${generateQrImage}`)
+      .fetch('GET', `${generateQrImage}`)
       .then(res => {
         console.log(res);
         CameraRoll.saveToCameraRoll(res.path());
@@ -137,7 +137,7 @@ const PDFQr = () => {
                   </Text>
                   <View style={styles.downloadView}>
                     <Image
-                      source={{uri: `data:image/png;base64,${generateQrImage}`}}
+                      source={{uri: `${generateQrImage}`}}
                       style={styles.qrImage}
                     />
                   </View>

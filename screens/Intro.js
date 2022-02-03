@@ -14,12 +14,17 @@ import {
 import LottieView from 'lottie-react-native';
 import AuthContext from '../components/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  AppearanceProvider,
+  Appearance,
+  useColorScheme,
+} from 'react-native-appearance';
 
 const Intro = ({navigation}) => {
   const {signIn} = React.useContext(AuthContext);
   const [sliderState, setSliderState] = useState({currentPage: 0});
   const {width, height} = Dimensions.get('window');
-
+  const scheme = useColorScheme();
   const setSliderPage = event => {
     const {currentPage} = sliderState;
     const {x} = event.nativeEvent.contentOffset;
@@ -40,8 +45,14 @@ const Intro = ({navigation}) => {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <StatusBar
+        barStyle={scheme === 'dark' ? 'light-content' : 'dark-content'}
+      />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: scheme === 'dark' ? 'rgb(18,18,18)' : 'white',
+        }}>
         <ScrollView
           style={{flex: 1}}
           horizontal={true}
@@ -51,7 +62,7 @@ const Intro = ({navigation}) => {
           onScroll={event => {
             setSliderPage(event);
           }}>
-          <View style={{width, height}}>
+          <View style={{width, height, alignItems: 'center'}}>
             <LottieView
               source={require('../assets/lottie/animation.json')}
               autoPlay
@@ -65,8 +76,20 @@ const Intro = ({navigation}) => {
               style={styles.imageStyle}
             /> */}
             <View style={styles.wrapper}>
-              <Text style={styles.header}>Nature Imitates Art</Text>
-              <Text style={styles.paragraph}>....something like that</Text>
+              <Text
+                style={[
+                  styles.header,
+                  {color: scheme === 'dark' ? 'white' : 'rgb(18,18,18)'},
+                ]}>
+                Kolayca QrCode ve Barcode Okutun.
+              </Text>
+              <Text
+                style={[
+                  styles.paragraph,
+                  {color: scheme === 'dark' ? 'white' : 'rgb(18,18,18)'},
+                ]}>
+                Oluşturulan Qr kodlari ve Barkodları hızlıca okutup işlem yapabilirsiniz.
+              </Text>
             </View>
           </View>
           <View style={{width, height}}>
@@ -77,24 +100,23 @@ const Intro = ({navigation}) => {
               style={styles.imageStyle}
             />
             <View style={styles.wrapper}>
-              <Text style={styles.header}>High quality Art work</Text>
-              <Text style={styles.paragraph}>
-                ... for a fraction of the price
+              <Text
+                style={[
+                  styles.header,
+                  {color: scheme === 'dark' ? 'white' : 'rgb(18,18,18)'},
+                ]}>
+                Yüksek kaliteli Qr kodlar oluşturun.
+              </Text>
+              <Text
+                style={[
+                  styles.paragraph,
+                  {color: scheme === 'dark' ? 'white' : 'rgb(18,18,18)'},
+                ]}>
+                Oluşturduğunuz yüksek kaliteli Qr veya Barkodları hızlıca telefonunuza indirin.
               </Text>
             </View>
           </View>
-          <View style={{width, height}}>
-            <Image
-              source={{
-                uri: 'https://static.vecteezy.com/ti/vetor-gratis/p3/1214444-smartphone-qr-code-scan-vetor.jpg',
-              }}
-              style={styles.imageStyle}
-            />
-            <View style={styles.wrapper}>
-              <Text style={styles.header}>Top Notch Artists</Text>
-              <Text style={styles.paragraph}>... all in one place</Text>
-            </View>
-          </View>
+         
         </ScrollView>
         <View style={styles.skipView}>
           <View style={styles.skipStep}></View>
@@ -108,7 +130,7 @@ const Intro = ({navigation}) => {
         </View>
 
         <View style={styles.paginationWrapper}>
-          {Array.from(Array(3).keys()).map((key, index) => (
+          {Array.from(Array(2).keys()).map((key, index) => (
             <View
               style={[
                 styles.paginationDots,
@@ -137,9 +159,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    textAlign:'center'
+
   },
   paragraph: {
     fontSize: 17,
+    textAlign:'center'
   },
   paginationWrapper: {
     position: 'absolute',

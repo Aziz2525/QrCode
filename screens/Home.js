@@ -13,12 +13,14 @@ import {
 import {TextInput} from 'react-native-gesture-handler';
 import {ColorPicker} from 'react-native-color-picker';
 const {width, height} = Dimensions.get('window');
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [bgColor, setBgColor] = useState('#ffffff');
+  const scheme = useColorScheme();
   return (
     <ScrollView
-      contentContainerStyle={styles.contentContainerStyle}
+      contentContainerStyle={[styles.contentContainerStyle,{backgroundColor: scheme === 'dark' ? 'black' : "white"}]}
       style={styles.container}>
       <View style={styles.inputView}>
         <View style={styles.info}>
@@ -94,10 +96,10 @@ export default Home;
 const styles = StyleSheet.create({
   contentContainerStyle: {
     padding: 10,
-    backgroundColor: 'white',
+  
   },
   container: {
-    backgroundColor: 'white',
+   
   },
   inputView: {
     flexDirection: 'row',

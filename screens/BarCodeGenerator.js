@@ -74,7 +74,8 @@ const BarCodeGenerator = ({route, navigation}) => {
         behavior="padding"
         keyboardVerticalOffset={100}
         style={{flex: 1, backgroundColor: 'white'}}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: 2,
+              borderBottomColor: '#EEEEEE',justifyContent:'space-between'}}>
           <View
             style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
             <Text>Arkaplan Rengi: </Text>
@@ -92,8 +93,7 @@ const BarCodeGenerator = ({route, navigation}) => {
               flexDirection: 'row',
               alignItems: 'center',
               padding: 10,
-              borderBottomWidth: 1,
-              borderBottomColor: '#EEEEEE',
+             
             }}>
             <Text>QR Rengi: </Text>
             <View

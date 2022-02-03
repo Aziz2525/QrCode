@@ -15,10 +15,12 @@ import {
   PublisherBanner,
   AdMobRewarded,
 } from 'react-native-admob';
+import { useColorScheme } from 'react-native-appearance';
 const BarCode = ({navigation}) => {
   const [items, setItems] = useState(barcodeItems);
   const [searchItems, setSeacrhItems] = useState(barcodeItems);
   const [isSearch, setIsSearch] = useState(false);
+  const scheme = useColorScheme();
   const search = e => {
     if (e.length > 0) {
       setIsSearch(true);
@@ -33,12 +35,13 @@ const BarCode = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{backgroundColor:scheme === 'dark' ? 'rgb(18, 18, 18)':"white"}]}>
       <View style={styles.searchView}>
         <View style={styles.searchBar}>
           <TextInput
             style={styles.searchInput}
             placeholder="Ara..."
+            placeholderTextColor={"#424141"}
             onChangeText={e => search(e)}
           />
           <Image
@@ -48,13 +51,13 @@ const BarCode = ({navigation}) => {
         </View>
       </View>
       <ScrollView
-        contentContainerStyle={{padding: 20, backgroundColor: 'white'}}>
+        contentContainerStyle={{padding: 20, backgroundColor: scheme === 'dark' ? 'rgb(18, 18, 18)' : "white"}}>
         <View style={styles.barcodeItems}>
           {!isSearch
             ? items.map((data, index) => {
                 return (
                   <TouchableOpacity
-                    style={styles.cardView}
+                    style={[styles.cardView,{backgroundColor: scheme === 'dark' ? 'rgb(18, 18, 18)' : "white",borderWidth:scheme === "dark" ?1 :0,borderColor:scheme === "dark" ?"white":"white"}]}
                     key={index}
                     onPress={() =>
                       navigation.push('BarcodeGenerator', {
@@ -68,14 +71,14 @@ const BarCode = ({navigation}) => {
                         style={{width: data.width, height: data.height}}
                       />
                     </View>
-                    <Text style={styles.cardText}>{data.text}</Text>
+                    <Text style={[styles.cardText,{color: scheme === 'dark' ? 'white' : "#424141"}]}>{data.text}</Text>
                   </TouchableOpacity>
                 );
               })
             : searchItems.map((data, index) => {
                 return (
                   <TouchableOpacity
-                    style={styles.cardView}
+                  style={[styles.cardView,{backgroundColor: scheme === 'dark' ? 'rgb(18, 18, 18)' : "white",borderWidth:scheme === "dark" ?1 :0,borderColor:scheme === "dark" ?"white":"white"}]}
                     key={index}
                     onPress={() =>
                       navigation.push('BarcodeGenerator', {
@@ -89,7 +92,7 @@ const BarCode = ({navigation}) => {
                         style={{width: data.width, height: data.height}}
                       />
                     </View>
-                    <Text style={styles.cardText}>{data.text}</Text>
+                    <Text style={[styles.cardText,{color: scheme === 'dark' ? 'white' : "#424141"}]}>{data.text}</Text>
                   </TouchableOpacity>
                 );
               })}
@@ -110,7 +113,6 @@ export default BarCode;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     flex: 1,
   },
   searchBar: {
@@ -126,6 +128,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
+    paddingBottom: 10,
+
   },
   searchInput: {
     width: '85%',

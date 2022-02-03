@@ -35,6 +35,8 @@ const Code128A = ({route}) => {
   const [textPosition, setTextPosition] = useState('bottom');
   const [textMargin, setTextMargin] = useState(2);
   const [fontSize, setFontSize] = useState(20);
+  const [font, setFont] = useState('monospace');
+  const [height, setHeight] = useState(50);
   const [veri, setVeri] = useState('');
   const getPermissionAndroid = async () => {
     try {
@@ -87,8 +89,8 @@ const Code128A = ({route}) => {
     var light = await AsyncStorage.getItem('bgColor');
     var dark = await AsyncStorage.getItem('qrColor');
     const data = {
-      veri,
-      type: 'CODE128',
+      veri:veri.toUpperCase(),
+      type: 'CODE128A',
       lineColor: dark,
       background: light,
       displayValue,
@@ -97,6 +99,8 @@ const Code128A = ({route}) => {
       textPosition,
       textMargin,
       fontSize,
+      font,
+      height,
     };
     generateBarcode(data).then(res => {
       if (res.success) {
@@ -114,8 +118,9 @@ const Code128A = ({route}) => {
         </FormControl.Label>
         <Input
           placeholder="Bir değer giriniz."
-          onChangeText={e => setVeri(e)}
+          onChangeText={e => setVeri(e.toUpperCase())}
           variant="underlined"
+          value={veri}
           _focus={{borderColor: '#FFA500'}}
         />
       </FormControl>
@@ -179,7 +184,38 @@ const Code128A = ({route}) => {
           <Slider.Thumb />
         </Slider>
       </FormControl>
-
+      <FormControl w="100%" style={styles.form}>
+        <FormControl.Label>Barkod Yüksekliği </FormControl.Label>
+        <Slider
+          defaultValue={height}
+          colorScheme="orange"
+          maxValue={200}
+          onChange={e => setHeight(e)}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+      </FormControl>
+      <FormControl w="100%" style={styles.form}>
+        <FormControl.Label>Yazı Fontu</FormControl.Label>
+        <Select
+          selectedValue={font}
+          minWidth="200"
+          placeholder="Yazı Fontunu Seçiniz"
+          _selectedItem={{
+            bg: 'orange.300',
+            endIcon: <CheckIcon size="5" />,
+          }}
+          mt={1}
+          onValueChange={itemValue => setFont(itemValue)}>
+          <Select.Item label="Monospace" value="monospace" />
+          <Select.Item label="Sans-serif" value="sans-serif" />
+          <Select.Item label="Serif" value="serif" />
+          <Select.Item label="Fantasy" value="fantasy" />
+          <Select.Item label="Cursive" value="cursive" />
+        </Select>
+      </FormControl>
       <FormControl w="100%" style={[styles.form, {flexDirection: 'row'}]}>
         <FormControl.Label>Yazı görünsün mü ?</FormControl.Label>
         <Checkbox
@@ -227,13 +263,13 @@ const Code128A = ({route}) => {
                 </TouchableOpacity>
                 <View style={{alignItems: 'center'}}>
                   <Text style={styles.generateQrText}>
-                    Qrcode Başarıyla Oluşturuldu
+                    Barkod Başarıyla Oluşturuldu
                   </Text>
                   <View style={styles.downloadView}>
                     <Image
                       resizeMode="stretch"
                       source={{uri: `${generateQrImage}`}}
-                      style={styles.qrImage}
+                      style={[styles.qrImage, {height}]}
                     />
                   </View>
                   <TouchableOpacity
@@ -262,7 +298,6 @@ const styles = StyleSheet.create({
   },
   qrImage: {
     width: 290,
-    height: 90,
   },
   generateQrText: {
     fontFamily: 'Nunito-Bold',
