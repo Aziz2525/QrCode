@@ -8,6 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+} from 'react-native-admob';
 import qrcodeItems from '../qrcodeItems';
 
 const QrCode = ({navigation}) => {
@@ -26,7 +32,13 @@ const QrCode = ({navigation}) => {
       setIsSearch(false);
     }
   };
-
+  useEffect(() => {
+    setTimeout(() => {
+      AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/8691691433');
+      AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+      AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+    }, 5000);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.searchView}>
@@ -86,6 +98,13 @@ const QrCode = ({navigation}) => {
               })}
         </View>
       </ScrollView>
+      <View>
+        <AdMobBanner
+          adSize="fullBanner"
+          adUnitID="ca-app-pub-3940256099942544/6300978111"
+          testDevices={[AdMobBanner.simulatorId]}
+        />
+      </View>
     </View>
   );
 };
@@ -110,7 +129,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 15,
-    paddingBottom:10
+    paddingBottom: 10,
   },
   searchInput: {
     width: '85%',

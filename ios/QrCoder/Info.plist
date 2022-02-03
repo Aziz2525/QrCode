@@ -32,6 +32,8 @@
     <string>Bu uygulama, görüntüleri cihazınıza kaydetmek istiyor.</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Bu uygulama, görüntüleri cihazınıza kaydetmek istiyor.</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-1206781501701167~7165208419</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

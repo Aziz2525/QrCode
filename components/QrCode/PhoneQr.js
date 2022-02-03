@@ -13,13 +13,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CameraRoll from '@react-native-community/cameraroll';
 import RNFetchBlob from 'rn-fetch-blob';
 import Modal from 'react-native-modal';
-import {Box, Button, FormControl, Stack, TextArea} from 'native-base';
-import generateQr from '../api/generateQr';
-
-const TextQr = () => {
+import {Box, Button, Input, FormControl, Stack, TextArea} from 'native-base';
+import generateQrPhone from '../../api/QrCode/generateQrPhone';
+const PhoneQr = () => {
   const [generateQrImage, setGenerateQrImage] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [metin, setMetin] = useState('');
+  const [phone, setPhone] = useState('');
   const getPermissionAndroid = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -71,11 +70,11 @@ const TextQr = () => {
     var light = await AsyncStorage.getItem('bgColor');
     var dark = await AsyncStorage.getItem('qrColor');
     const data = {
-      text: metin,
+      phone,
       light,
       dark,
     };
-    generateQr(data).then(res => {
+    generateQrPhone(data).then(res => {
       if (res.success) {
         setGenerateQrImage(res.base64);
         setIsModalVisible(true);
@@ -85,17 +84,13 @@ const TextQr = () => {
   return (
     <View>
       <FormControl w="100%" style={styles.form}>
-        <FormControl.Label>Metin</FormControl.Label>
-        <Box alignItems="center" w="100%">
-          <TextArea
-            h={20}
-            onChangeText={e => setMetin(e)}
-            value={metin}
-            placeholder="Metin giriniz..."
-            w="100%"
-            _focus={{borderColor: '#FFA500'}}
-          />
-        </Box>
+        <FormControl.Label>Telefon</FormControl.Label>
+        <Input
+          placeholder="Telefon numaranızı giriniz"
+          variant="underlined"
+          onChangeText={e => setPhone(e)}
+          _focus={{borderColor: '#FFA500'}}
+        />
       </FormControl>
       <Stack
         style={{alignItems: 'flex-end'}}
@@ -131,7 +126,7 @@ const TextQr = () => {
                   onPress={() => setIsModalVisible(false)}
                   style={styles.closeBtn}>
                   <Image
-                    source={require('../assets/images/close.png')}
+                   source={require('../../assets/images/close.png')}
                     style={{width: 30, height: 30, tintColor: 'gray'}}
                   />
                 </TouchableOpacity>
@@ -149,7 +144,7 @@ const TextQr = () => {
                     style={styles.download}
                     onPress={() => handleDownload()}>
                     <Image
-                      source={require('../assets/images/download.png')}
+                      source={require('../../assets/images/download.png')}
                       style={{width: 20, height: 20, tintColor: '#565656'}}
                     />
                     <Text style={styles.downloadText}>Qr Code'u İndir</Text>
@@ -163,39 +158,41 @@ const TextQr = () => {
   );
 };
 
-export default TextQr;
+export default PhoneQr;
+
 
 const styles = StyleSheet.create({
-  form: {
-    marginBottom: 20,
-  },
-  qrImage: {
-    width: 264,
-    height: 264,
-    borderRadius:5
-  },
-  generateQrText: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 19,
-    marginBottom: 20,
-    marginTop:20
-  },
-  downloadView: {
-    position: 'relative',
-  },
-  download: {
-    borderRadius: 3,
-    padding: 10,
-    width: '85%',
-    backgroundColor: '#F2F2F2',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  downloadText: {
-    fontFamily: 'Nunito-Bold',
-    color: '#565656',
-    marginLeft: 10,
-  },
-});
+    form: {
+      marginBottom: 20,
+    },
+    qrImage: {
+      width: 264,
+      height: 264,
+      borderRadius:5
+    },
+    generateQrText: {
+      fontFamily: 'Nunito-Bold',
+      fontSize: 19,
+      marginBottom: 20,
+      marginTop:20
+    },
+    downloadView: {
+      position: 'relative',
+    },
+    download: {
+      borderRadius: 3,
+      padding: 10,
+      width: '85%',
+      backgroundColor: '#F2F2F2',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 20,
+    },
+    downloadText: {
+      fontFamily: 'Nunito-Bold',
+      color: '#565656',
+      marginLeft: 10,
+    },
+  });
+  

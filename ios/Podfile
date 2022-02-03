@@ -7,6 +7,8 @@ target 'QrCoder' do
   config = use_native_modules!
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+  pod 'react-native-admob', path: '../node_modules/react-native-admob'
+  pod 'Google-Mobile-Ads-SDK', '~> 7.69.0'
   use_react_native!(
     :path => config[:reactNativePath],
     # to enable hermes on iOS, change `false` to `true` and then install pods

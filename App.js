@@ -29,6 +29,7 @@ import QrScanner from './screens/QrScanner';
 import Profile from './screens/Profile';
 import QrGenerator from './screens/QrGenerator';
 import {ColorPicker} from 'react-native-color-picker';
+import BarCodeGenerator from './screens/BarCodeGenerator';
 function SplashScreen() {
   return (
     <View>
@@ -70,6 +71,7 @@ function MyTabs() {
           },
         }}
       />
+      
     </Tab.Navigator>
   );
 }
@@ -247,6 +249,21 @@ export default function App({navigation}) {
                 <Stack.Screen
                   name="QrGenerator"
                   component={QrGenerator}
+                  options={({route, navigation}) => ({
+                    title: route.params.name + ' Oluştur',
+                    headerTitleStyle: {
+                      fontFamily: 'Nunito-ExtraBold',
+                      color: '#424141',
+                    },
+                  
+                    headerBackTitle: 'Geri',
+                    headerBackTitleStyle: {color: 'orange'},
+                    headerTintColor: 'orange',
+                  })}
+                />
+                 <Stack.Screen
+                  name="BarcodeGenerator"
+                  component={BarCodeGenerator}
                   options={({route, navigation}) => ({
                     title: route.params.name + ' Oluştur',
                     headerTitleStyle: {

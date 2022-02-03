@@ -6557,6 +6557,13 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
+"react-native-admob@^2.0.0-beta.6":
+  "integrity" "sha512-Tzk1N5c6so/Dj58q51uqWkd5i/X5a/cgLNYczng78hRGroRxU6Av2lMlwxZK2RFFtFxUhfpg2xNN2bhEqCydDA=="
+  "resolved" "https://registry.npmjs.org/react-native-admob/-/react-native-admob-2.0.0-beta.6.tgz"
+  "version" "2.0.0-beta.6"
+  dependencies:
+    "prop-types" "^15.5.10"
+
 "react-native-animatable@1.3.3":
   "integrity" "sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w=="
   "resolved" "https://registry.npmjs.org/react-native-animatable/-/react-native-animatable-1.3.3.tgz"
@@ -6677,7 +6684,7 @@
     "normalize-css-color" "^1.0.2"
     "prop-types" "^15.6.0"
 
-"react-native@*", "react-native@^0.0.0-0 || ^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || ^0.65.0 || ^0.66.0 || 1000.0.0", "react-native@>=0.46", "react-native@>=0.50.0", "react-native@>=0.57", "react-native@>=0.60", "react-native@>=0.60.0", "react-native@>=0.63.3", "react-native@>=0.65.0", "react-native@0.66.4":
+"react-native@*", "react-native@^0.0.0-0 || ^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || ^0.65.0 || ^0.66.0 || 1000.0.0", "react-native@>=0.44.0", "react-native@>=0.46", "react-native@>=0.50.0", "react-native@>=0.57", "react-native@>=0.60", "react-native@>=0.60.0", "react-native@>=0.63.3", "react-native@>=0.65.0", "react-native@0.66.4":
   "integrity" "sha512-9vx5dlSfQlKbbDtr8+xMon6qsmSu7jvjdXWZpEKh3XVKpUidbbODv7048gwVKX8YAel1egeR7hN8vzSeI6ssTw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.66.4.tgz"
   "version" "0.66.4"

@@ -5,7 +5,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'Code128 auto',
-    navigator: 'VCard',
+    navigator: 'Code128 auto',
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'Code128 A',
-    navigator: 'Message',
+    navigator: 'Code128 A',
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'Code128 B',
-    navigator: 'Email',
+    navigator: 'Code128 B',
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'Code128 C',
-    navigator: 'Text',
+    navigator: 'Code128 C',
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'EAN13',
-    navigator: 'Phone',
+    navigator: 'EAN13',
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'EAN8',
-    navigator: 'Link',
+    navigator: 'EAN8',
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'UPC',
-    navigator: 'Contact',
+    navigator: 'UPC',
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'CODE39',
-    navigator: 'Wifi',
+    navigator: 'CODE39',
   },
   {
     id: 9,
@@ -69,7 +69,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'ITF14',
-    navigator: 'Bitcoin',
+    navigator: 'ITF14',
   },
   {
     id: 10,
@@ -77,7 +77,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'ITF',
-    navigator: 'SocialMedia',
+    navigator: 'ITF',
   },
   {
     id: 11,
@@ -85,7 +85,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'MSI',
-    navigator: 'pdf',
+    navigator: 'MSI',
   },
   {
     id: 12,
@@ -93,7 +93,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'MSI10',
-    navigator: 'MP3',
+    navigator: 'MSI10',
   },
   {
     id: 13,
@@ -101,7 +101,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'MSI11',
-    navigator: 'Application',
+    navigator: 'MSI11',
   },
   {
     id: 14,
@@ -109,7 +109,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'MSI1010',
-    navigator: 'Application',
+    navigator: 'MSI1010',
   },
   {
     id: 15,
@@ -117,7 +117,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'MSI1110',
-    navigator: 'Application',
+    navigator: 'MSI1110',
   },
   {
     id: 16,
@@ -125,7 +125,7 @@ const barcodeItems = [
     width: 35,
     height: 35,
     text: 'PHARMACODE',
-    navigator: 'Application',
+    navigator: 'PHARMACODE',
   },
 ];
 export default barcodeItems;

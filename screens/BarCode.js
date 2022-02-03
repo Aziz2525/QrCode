@@ -5,11 +5,17 @@ import {
   View,
   TextInput,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import barcodeItems from '../barcodeItems';
-
-const BarCode = () => {
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+} from 'react-native-admob';
+const BarCode = ({navigation}) => {
   const [items, setItems] = useState(barcodeItems);
   const [searchItems, setSeacrhItems] = useState(barcodeItems);
   const [isSearch, setIsSearch] = useState(false);
@@ -47,7 +53,15 @@ const BarCode = () => {
           {!isSearch
             ? items.map((data, index) => {
                 return (
-                  <View style={styles.cardView} key={index}>
+                  <TouchableOpacity
+                    style={styles.cardView}
+                    key={index}
+                    onPress={() =>
+                      navigation.push('BarcodeGenerator', {
+                        name: data.text,
+                        navigator: data.navigator,
+                      })
+                    }>
                     <View style={styles.imageView}>
                       <Image
                         source={data.image}
@@ -55,24 +69,39 @@ const BarCode = () => {
                       />
                     </View>
                     <Text style={styles.cardText}>{data.text}</Text>
-                  </View>
+                  </TouchableOpacity>
                 );
               })
             : searchItems.map((data, index) => {
                 return (
-                  <View style={styles.cardView} key={index}>
+                  <TouchableOpacity
+                    style={styles.cardView}
+                    key={index}
+                    onPress={() =>
+                      navigation.push('BarcodeGenerator', {
+                        name: data.text,
+                        navigator: data.navigator,
+                      })
+                    }>
                     <View style={styles.imageView}>
-                    <Image
-                      source={data.image}
-                      style={{width: data.width, height: data.height}}
-                    />
+                      <Image
+                        source={data.image}
+                        style={{width: data.width, height: data.height}}
+                      />
                     </View>
                     <Text style={styles.cardText}>{data.text}</Text>
-                  </View>
+                  </TouchableOpacity>
                 );
               })}
         </View>
       </ScrollView>
+      <View>
+        <AdMobBanner
+          adSize="fullBanner"
+          adUnitID="ca-app-pub-3940256099942544/6300978111"
+          testDevices={[AdMobBanner.simulatorId]}
+        />
+      </View>
     </View>
   );
 };
@@ -132,10 +161,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
   },
-  imageView:{
-    backgroundColor:'rgb(232,230,239)',
-    padding:10,
-    borderRadius:10
+  imageView: {
+    backgroundColor: 'rgb(232,230,239)',
+    padding: 10,
+    borderRadius: 10,
   },
   cardText: {
     fontSize: 16,

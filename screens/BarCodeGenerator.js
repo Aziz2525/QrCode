@@ -18,21 +18,25 @@ import {
   AdMobRewarded,
 } from 'react-native-admob';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import VCardQr from '../components/QrCode/VCardQr';
-import MessageQr from '../components/QrCode/MessageQr';
-import EmailQr from '../components/QrCode/EmailQr';
-import TextQr from '../components/QrCode/TextQr';
-import PhoneQr from '../components/QrCode/PhoneQr';
-import LinkQr from '../components/QrCode/LinkQr';
-import WifiQr from '../components/QrCode/WifiQr';
-import BitcoinQr from '../components/QrCode/BitcoinQr';
-import SocialMediaQr from '../components/QrCode/SocialMediaQr';
-import PdfQr from '../components/QrCode/PdfQr';
-import ApplicationQr from '../components/QrCode/ApplicationQr';
-import Mp3Qr from '../components/QrCode/Mp3Qr';
+import Code128A from '../components/BarCode/Code128A';
+import Code128auto from '../components/BarCode/Code128auto';
+import Code128B from '../components/BarCode/Code128B';
+import Code128C from '../components/BarCode/Code128C';
+import EAN13 from '../components/BarCode/EAN13';
+import EAN8 from '../components/BarCode/EAN8';
+import UPC from '../components/BarCode/UPC';
+import CODE39 from '../components/BarCode/CODE39';
+import ITF14 from '../components/BarCode/ITF14';
+import ITF from '../components/BarCode/ITF';
+import MSI from '../components/BarCode/MSI';
+import MSI10 from '../components/BarCode/MSI10';
+import MSI11 from '../components/BarCode/MSI11';
+import MSI1010 from '../components/BarCode/MSI1010';
+import MSI1110 from '../components/BarCode/MSI1110';
+import Pharmacode from '../components/BarCode/Pharmacode';
 import {ColorPicker} from 'react-native-color-picker';
 const {width, height} = Dimensions.get('window');
-const QrGenerator = ({route, navigation}) => {
+const BarCodeGenerator = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [bgColor, setBgColor] = React.useState('#ffffff');
   const [qrColor, setQrColor] = React.useState('#000000');
@@ -70,83 +74,91 @@ const QrGenerator = ({route, navigation}) => {
         behavior="padding"
         keyboardVerticalOffset={100}
         style={{flex: 1, backgroundColor: 'white'}}>
-          <View style={{flexDirection:'row',alignItems:'center'}}>
-          <View style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
-          <Text>Arkaplan Rengi: </Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View
+            style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
+            <Text>Arkaplan Rengi: </Text>
+            <View
+              style={{
+                backgroundColor: bgColor + '8A',
+                padding: 3,
+                borderRadius: 10,
+              }}>
+              <Text>{bgColor}</Text>
+            </View>
+          </View>
           <View
             style={{
-              backgroundColor: bgColor + '8A',
-              padding: 3,
-              borderRadius: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+              padding: 10,
+              borderBottomWidth: 1,
+              borderBottomColor: '#EEEEEE',
             }}>
-            <Text>{bgColor}</Text>
+            <Text>QR Rengi: </Text>
+            <View
+              style={{
+                backgroundColor: qrColor + '8A',
+                padding: 3,
+                borderRadius: 10,
+              }}>
+              <Text>{qrColor}</Text>
+            </View>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 10,
-            borderBottomWidth: 1,
-            borderBottomColor: '#EEEEEE',
-          }}>
-          <Text>QR Rengi: </Text>
-          <View
-            style={{
-              backgroundColor: qrColor + '8A',
-              padding: 3,
-              borderRadius: 10,
-            }}>
-            <Text>{qrColor}</Text>
-          </View>
-        </View>
-          </View>
-       
 
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle}
           style={styles.container}>
-          {route.params.navigator === 'VCard' ? (
-            <VCardQr />
-          ) : route.params.navigator === 'Message' ? (
-            <MessageQr />
-          ) : route.params.navigator === 'Email' ? (
-            <EmailQr />
-          ) : route.params.navigator === 'Wifi' ? (
-            <WifiQr />
-          ) : route.params.navigator === 'Link' ? (
-            <LinkQr />
-          ) : route.params.navigator === 'Text' ? (
-            <TextQr />
-          ) : route.params.navigator === 'Phone' ? (
-            <PhoneQr />
-          ) : route.params.navigator === 'Bitcoin' ? (
-            <BitcoinQr />
-          ) : route.params.navigator === 'SocialMedia' ? (
-            <SocialMediaQr />
-          ) : route.params.navigator === 'pdf' ? (
-            <PdfQr />
-          ) : route.params.navigator === 'MP3' ? (
-            <Mp3Qr />
-          ) : route.params.navigator === 'Application' ? (
-            <ApplicationQr />
+          {route.params.navigator === 'Code128 auto' ? (
+            <Code128auto route={route}/>
+          ) : route.params.navigator === 'Code128 A' ? (
+            <Code128A route={route}/>
+          ) : route.params.navigator === 'Code128 B' ? (
+            <Code128B route={route}/>
+          ) : route.params.navigator === 'Code128 C' ? (
+            <Code128C route={route}/>
+          ) : route.params.navigator === 'EAN13' ? (
+            <EAN13 route={route}/>
+          ) : route.params.navigator === 'EAN8' ? (
+            <EAN8 route={route}/>
+          ) : route.params.navigator === 'UPC' ? (
+            <UPC route={route}/>
+          ) : route.params.navigator === 'CODE39' ? (
+            <CODE39 route={route}/>
+          ) : route.params.navigator === 'ITF14' ? (
+            <ITF14 route={route}/>
+          ) : route.params.navigator === 'ITF' ? (
+            <ITF route={route}/>
+          ) : route.params.navigator === 'MSI' ? (
+            <MSI route={route}/>
+          ) : route.params.navigator === 'MSI10' ? (
+            <MSI10 route={route}/>
+          ) : route.params.navigator === 'MSI11' ? (
+            <MSI11 route={route}/>
+          ) : route.params.navigator === 'MSI1010' ? (
+            <MSI1010 route={route}/>
+          ) : route.params.navigator === 'MSI1110' ? (
+            <MSI1110 route={route}/>
+          ) : route.params.navigator === 'PHARMACODE' ? (
+            <Pharmacode route={route}/>
           ) : null}
         </ScrollView>
         <View style={{width: width}}>
-        <AdMobBanner
+          <AdMobBanner
+            adSize="fullBanner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111"
+            testDevices={[AdMobBanner.simulatorId]}
+          />
+
+          {/* <PublisherBanner
           adSize="fullBanner"
           adUnitID="ca-app-pub-3940256099942544/6300978111"
-          testDevices={[AdMobBanner.simulatorId]}
-        />
-    
-        {/* <PublisherBanner
-        adSize="fullBanner"
-        adUnitID="ca-app-pub-3940256099942544/6300978111"
-        testDevices={[PublisherBanner.simulatorId]}
-        onAdFailedToLoad={error => console.error(error)}
-        onAppEvent={event => console.log(event.name, event.info)}
-      /> */}
-      </View>
+          testDevices={[PublisherBanner.simulatorId]}
+          onAdFailedToLoad={error => console.error(error)}
+          onAppEvent={event => console.log(event.name, event.info)}
+        /> */}
+        </View>
       </KeyboardAvoidingView>
       <Modal
         animationType="slide"
@@ -191,12 +203,11 @@ const QrGenerator = ({route, navigation}) => {
           />
         </View>
       </Modal>
-
     </>
   );
 };
 
-export default QrGenerator;
+export default BarCodeGenerator;
 
 const styles = StyleSheet.create({
   contentContainerStyle: {
